@@ -25,7 +25,7 @@ mongoose.connect('mongodb+srv://eanshgupta:mongodbanshgupta@cluster0.kndmqxp.mon
   });
 
 // Include routes (uncomment if you have admin routes)
-//app.use(adminRoute); // Include admin routes if needed
+app.use(adminRoute); // Include admin routes if needed
 app.use(authRoutes);
 app.use(menuRoutes);
 app.use(searchRoutes);
