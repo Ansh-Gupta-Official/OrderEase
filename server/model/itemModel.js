@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-//const ratingSchema=require('./model/ratingModel.js');
+const ratingSchema=require('../model/ratingModel.js');
 
 // Define product schema
 const productSchema = new mongoose.Schema({
@@ -14,7 +14,7 @@ const productSchema = new mongoose.Schema({
       required: true,
     },
   ],
- // ratings: [ratingSchema]
+ ratings: [ratingSchema]
 
 });
 

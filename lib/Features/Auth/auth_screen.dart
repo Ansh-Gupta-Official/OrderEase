@@ -144,7 +144,7 @@ class _AuthState extends State<Auth> {
                       children: [
                         TextFormField(
                           controller: _nameController,
-                          keyboardType: TextInputType.phone,
+                          keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             // labelText: 'Name',
                             hintText: 'Name',

@@ -46,17 +46,26 @@ class _DetailPageState extends State<DetailPage> {
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        setState(() {
-          ratings = data.cast<Map<String, dynamic>>();
-        });
+        if (response.body.isNotEmpty) {
+          final List<dynamic> data = json.decode(response.body);
+          setState(() {
+            ratings = data.cast<Map<String, dynamic>>();
+          });
+        } else {
+          // Handle empty response body
+          throw Exception('Empty response body');
+        }
       } else {
-        throw Exception('Failed to load ratings');
+        // Handle error response
+        throw Exception('Failed to load ratings: ${response.statusCode}');
       }
     } catch (error) {
+      // Handle network errors or other exceptions
+      print('Error fetching ratings: $error');
       throw Exception('Error fetching ratings: $error');
     }
   }
+
 
   @override
   Widget build(BuildContext context) {

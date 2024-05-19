@@ -82,104 +82,107 @@ class Cart extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           child: cart.isNotEmpty // Check if the cart is not empty
-              ? Column(
-            children: [
-              Column(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: cart.length,
-                    itemBuilder: (context, index) {
-                      final cartItem = cart[index];
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              cartItem['imageurls'][0] as String),
-                        ),
-                        title: Text(
-                          cartItem['name'].toString(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 19),
-                        ),
-                        subtitle: Text(
-                          '${cartItem['quantity']} x ${cartItem['price']}', // Display quantity and price
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 10),
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Provider.of<CartProvider>(context,
-                                    listen: false)
-                                    .decrementQuantity(cartItem);
-                              },
-                              icon: Icon(Icons.remove, color: Colors.red),
-                            ),
-                            Text(
-                              cartItem['quantity'].toString(),
-                              style: TextStyle(fontSize: 16),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                Provider.of<CartProvider>(context,
-                                    listen: false)
-                                    .incrementQuantity(cartItem);
-                              },
-                              icon: Icon(Icons.add, color: Colors.green),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                Provider.of<CartProvider>(context,
-                                    listen: false)
-                                    .removeProduct(cartItem);
-                              },
-                              icon: Icon(Icons.delete, color: Colors.red),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              ? Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                            children: [
+                Column(
                   children: [
-                    Text(
-                      'Total Amount:',
-                      style: TextStyle(
-                          color: Colors.teal,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      '\$${calculateTotalAmount(cart).toStringAsFixed(2)}',
-                      style: TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: cart.length,
+                      itemBuilder: (context, index) {
+                        final cartItem = cart[index];
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                cartItem['imageurls'][0] as String),
+                          ),
+                          title: Text(
+                            cartItem['name'].toString(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 19),
+                          ),
+                          subtitle: Text(
+                            '${cartItem['quantity']} x ${cartItem['price']}', // Display quantity and price
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10),
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  Provider.of<CartProvider>(context,
+                                      listen: false)
+                                      .decrementQuantity(cartItem);
+                                },
+                                icon: Icon(Icons.remove, color: Colors.red),
+                              ),
+                              Text(
+                                cartItem['quantity'].toString(),
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Provider.of<CartProvider>(context,
+                                      listen: false)
+                                      .incrementQuantity(cartItem);
+                                },
+                                icon: Icon(Icons.add, color: Colors.green),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  Provider.of<CartProvider>(context,
+                                      listen: false)
+                                      .removeProduct(cartItem);
+                                },
+                                icon: Icon(Icons.delete, color: Colors.red),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
-              ),
-              SizedBox(height: 20),
-              CustomButton(
-                text: 'Proceed to pay',
-                onTap: () {
-                  sendData(cart);
-                  saveDailyIncome(dateTime, calculateTotalAmount(cart));
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Payment()));
-                },
-              ),
-            ],
-          )
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total Amount:',
+                        style: TextStyle(
+                            color: Colors.teal,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '\$${calculateTotalAmount(cart).toStringAsFixed(2)}',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                CustomButton(
+                  text: 'Proceed to pay',
+                  onTap: () {
+                    sendData(cart);
+                    saveDailyIncome(dateTime, calculateTotalAmount(cart));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Payment()));
+                  },
+                ),
+                            ],
+                          ),
+              )
               : Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

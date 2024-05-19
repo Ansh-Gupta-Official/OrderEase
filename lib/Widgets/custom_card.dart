@@ -99,7 +99,7 @@ class _CustomCardState extends State<CustomCard> {
                         color: Color.fromARGB(137, 0, 0, 0),
                       ),
                     ),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 5),
                     Text(
                       widget.itemName,
                       style: const TextStyle(
@@ -107,7 +107,7 @@ class _CustomCardState extends State<CustomCard> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

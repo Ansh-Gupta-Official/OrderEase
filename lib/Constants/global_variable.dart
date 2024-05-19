@@ -7,6 +7,7 @@ class GlobalVariables{
     'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/special-food-deals-design-template-78fc67e986d2b6f9b6de15badac7afea_screen.jpg?ts=1647031791',
     'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/special-food-deals-design-template-7f24f3eb9a58b24bbb102ce4849d0c6b_screen.jpg?ts=1663403350'
     ];
-    static const String baseUrl = 'https://orderease-nh33.onrender.com';
+    //static const String baseUrl = 'https://orderease-nh33.onrender.com';
+  static const String baseUrl = 'http://localhost:3000';
 
 }

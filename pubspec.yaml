@@ -16,11 +16,17 @@ dependencies:
   http: ^1.1.0
   lottie: ^2.3.2
   provider: ^6.1.2
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+
+flutter_launcher_icons:
+  android: "launcher icon"
+  ios: true
+  image_path : "assets/waiter.png"
 
 flutter:
   uses-material-design: true
